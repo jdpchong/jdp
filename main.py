@@ -47,7 +47,6 @@ case_num.append(case)
 print(f"total num: {count}")
 if grade >= 2:
     print(f"switch num: {swt_num}")
-if grade >= 3:
-    print("switch num:", end = ' ')
+    print("case num:", end = ' ')
     for case in case_num:
         print(case, end = ' ')
