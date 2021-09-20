@@ -23,13 +23,12 @@ with open(file_name, encoding = 'utf-8') as c_text:
 # 统计关键字个数
 count = 0  # 关键字总数
 kw_list = []  # 关键字列表
-shed = []
+shed = []  # 储存if结构类型的栈
 swt_num = 0  # switch个数
 case_num = []  # case个数列表
 case = 0  # 每个switch下的case个数
-single_if_num = 0
-if_elif_num = 0
-flag = 0
+single_if_num = 0  # 单一if——else结构个数
+if_elif_num = 0  # 多重if——else结构个数
 chars = ['(', ')', '{', '}', ':', ',', '<', '>', '=', '+', '-', '#', ';']
 # 将所有特殊字符换为空格
 for line in lines:
@@ -51,13 +50,14 @@ for line in lines:
         case += 1
     # 将文件中的if，else if，else编入一个新的列表kw_list
     if "if" in words_line:
-        # 将else if看成一个关键词
+        # 将else if看成一个关键词，并将所有有关词编码
         if 'else' in words_line:
             kw_list.append('2')
         else:
             kw_list.append('1')
     elif 'else' in words_line:
         kw_list.append('3')
+#根据if来入栈，单独的else出栈，根据出栈的值增加两种if结构的个数
 for kw in kw_list:
     if kw == '1':
         shed.append(1)
