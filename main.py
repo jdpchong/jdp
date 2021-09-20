@@ -74,7 +74,6 @@ del case_num[0]
 case_num.append(case)
 
 # 输出
-print(kw_list)
 print(f"total num: {count}")
 if grade >= 2:
     print(f"switch num: {swt_num}")
