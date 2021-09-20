@@ -14,7 +14,7 @@ file_name = input("input the file name")
 
 # 输入完成等级
 grade = input("input the class")
-grade=int(grade)
+grade = int(grade)
 
 # 读入文件并将文本分成多行存储在字符串数组内
 with open(file_name, encoding = 'utf-8') as c_text:
@@ -23,6 +23,8 @@ with open(file_name, encoding = 'utf-8') as c_text:
 # 统计关键字个数
 count = 0  # 关键字总数
 swt_num = 0  # switch个数
+case_num = []  # case个数列表
+case = 0  # 每个switch下的case个数
 chars = ['(', ')', '{', '}', ':', ',', '<', '>', '=', '+', '-', '#', ';']
 # 将所有特殊字符换为空格
 for line in lines:
@@ -36,7 +38,16 @@ for line in lines:
             count += 1
     if "switch" in words_line:
         swt_num += 1
+        case_num.append(case)
+        case = 0
+    if "case" in words_line:
+        case += 1
+del case_num[0]
+case_num.append(case)
 print(f"total num: {count}")
 if grade >= 2:
     print(f"switch num: {swt_num}")
-
+if grade >= 3:
+    print("switch num:", end = ' ')
+    for case in case_num:
+        print(case, end = ' ')
